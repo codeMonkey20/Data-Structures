@@ -1,39 +1,36 @@
-public class Vertex<T> {
-	private T VALUE;
-	private List<Vertex> NB = new List<Vertex>();
-	private boolean TRAVERSE = false;
+public class Vertex<E> {
 
-	public Vertex(T value) {
+	private E VALUE;
+	private List<Vertex<E>> NEIGHBORS = new List<>();
+	private boolean TRAVERSE = false;
+	
+	public Vertex(E value) {
 		VALUE = value;
 	}
-
-	public T getValue() {
+	
+	public E getValue() {
 		return VALUE;
 	}
-
-	public void setValue(T value) {
-		VALUE = value;
-	}
-
-	public boolean setNeighbor(Vertex nb) {
-		if (NB.isExisting(nb)) {
-			return false;
+	
+	public boolean setNeighbor(Vertex<E> vertex) {
+		for (int i = 0; i < NEIGHBORS.length; i++) {
+			if (NEIGHBORS.getElement(i) == vertex) {
+				return false;
+			}
 		}
-		NB.append(nb);
+		NEIGHBORS.append(vertex);
 		return true;
 	}
-
-	public List getNeighbor() {
-		return NB;
+	
+	public List<Vertex<E>> getNeighbor() {
+		return NEIGHBORS;
 	}
-
+	
 	public void setTraverse(boolean t) {
 		TRAVERSE = t;
 	}
-
+	
 	public boolean getTraverse() {
 		return TRAVERSE;
 	}
-
-
 }
